@@ -6,6 +6,8 @@ __pycache__/
 # C extensions and compiled artefacts
 *.so
 
+./isaac_core_out/*
+
 # Distribution / packaging. `src/isaac_core.egg-info/` is written by `pip install -e .` and is what
 # makes the editable install resolve, so it is ignored rather than deleted.
 build/

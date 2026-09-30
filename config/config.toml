@@ -42,7 +42,7 @@ delete_cache_on_launch = false         # true: re-stream terrain every run, avoi
 
 
 [features]
-enabled = ["bbox",]
+enabled = ["bbox", "segmentation", ]
 
 
 [vehicles.gg_camera]
