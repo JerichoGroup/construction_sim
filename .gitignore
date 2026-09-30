@@ -1,0 +1,68 @@
+# Byte-compiled Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions and compiled artefacts
+*.so
+
+# Distribution / packaging. `src/isaac_core.egg-info/` is written by `pip install -e .` and is what
+# makes the editable install resolve, so it is ignored rather than deleted.
+build/
+dist/
+sdist/
+wheels/
+*.egg-info/
+*.egg
+.eggs/
+MANIFEST
+
+# Test, type and lint caches
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.hypothesis/
+
+# Virtual environments. This project installs with `pip install --user` and has no venv, but an
+# individual is free to make one.
+.venv/
+venv/
+env/
+ENV/
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+
+# Environment files, which can carry credentials
+.env
+.envrc
+
+# --------------------------------------------------------------------------- #
+# This project's own artefacts
+# --------------------------------------------------------------------------- #
+
+# Default output_root for frame captures and recordings. Configurable, but this is where a default
+# run writes, and captures are large.
+isaac_core_out/
+*.mp4
+*.timestamps.txt
+
+# Scratch directories used while debugging against a live simulator.
+.validate/
+.probe/
+.equiv/
+
+# Isaac Sim writes generated OmniGraph node databases into the user cache, not here, but a stray
+# local copy would be generated code and should never be committed.
+ogn_generated/
+*Database.py.bak
+
+# Kit leaves these behind when it crashes, which it does on roughly one launch in three.
+carb.*/
