@@ -1,0 +1,88 @@
+
+[sim]
+scene = "const_site"
+experience = "isaacsim.exp.full.kit"
+renderer = "RaytracedLighting"
+physics_dt = 0.016666666666666666
+stage_units_in_meters = 1.0
+viewport_camera = "/World/Environment/gg_camera/Xform/main_camera_01"
+extensions = [
+    "omni.graph.action",
+    "omni.graph.nodes",
+    "isaacsim.core.nodes",
+    "isaacsim.ros2.bridge",
+    "isaacsim.streaming.rtsp",
+    "isaac_core_ogn.math",
+    "isaac_core_ogn.position",
+    "isaac_core_ogn.sensors",
+]
+boot_extensions = ["cesium.usd.plugins", "cesium.omniverse"]
+extension_search_paths = ["~/.local/share/ov/data/exts/v2"]
+
+
+[sim.control_plane]
+enabled = true
+host = "127.0.0.1"
+port = 8760
+output_root = "./isaac_core_out"
+
+
+[assets]
+search_paths = ["./usd", "./usd/assets"]
+layer_search_paths = []
+# hdri = "sunflowers_puresky_4k.exr"
+
+
+[geo]
+enu_reference = { lat_deg = 32.22481, lon_deg = 35.25621, alt_m = 516.7 }
+
+
+[cesium]
+delete_cache_on_launch = false         # true: re-stream terrain every run, avoiding a stalled startup
+
+
+[features]
+enabled = ["bbox",]
+
+
+[vehicles.gg_camera]
+pose_source = "udp"
+rotation_frame = "world"
+udp_port = 33333
+mount = "/World/Environment/gg_camera"
+
+[vehicles.gg_camera.camera]
+resolution = [1280, 720]
+fov_deg = 78.1
+focal_length_mm = 22.7885
+focal_length_min_mm = 20.0
+focal_length_max_mm = 200.0
+zoom_max_rate_deg_s = 10.0
+focus_distance = 400.0
+rtsp_port = 8554
+rtsp_mount_path = "/stream"
+image_topic = "/isaac_core/image_rgb"
+
+
+[ros2]
+domain_id = 13
+
+
+[logging]
+level = "warning"
+isaac_logs = true
+quiet_loggers = [
+    "ogn_registration",
+    "AutoNode",
+    "omni",
+    "omni.kit",
+    "usd_validation_nvidia",
+    "matplotlib",
+    "asyncio",
+    "isaacsim",
+    "cesium",
+]
+
+
+[layers]
+# thermal_cam = { gain = 1.5 }
