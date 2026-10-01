@@ -48,20 +48,24 @@ def main() -> None:
             camera.start()
             threading.Thread(target=camera.spin, daemon=True).start()
 
+            print(f"session state: {session.state()}")
             session.start_segmentation_recording()
 
             sleep(4.0)
 
             camera.stop()
 
-            print("video:", camera.save_video(str(REPO_ROOT / "isaac_core_out" / f"POV{i}_vis.mp4")))
-            print("segmented video:", session.stop_segmentation_recording(str(REPO_ROOT / "isaac_core_out" / f"POV{i}_segmented.mp4")))
+            data_dir = REPO_ROOT / "isaac_core_out" / f"pov{i}"
+            data_dir.mkdir(parents=True, exist_ok=True)
+
+            print("video:", camera.save_video(str(data_dir / f"vis_.mp4")))
+            print("segmented video:", session.stop_segmentation_recording(str(data_dir / f"seg_.mp4")))
 
             sleep(0.2)
 
             camera.shutdown()
 
-    for text_file in (REPO_ROOT / "isaac_core_out").glob("*.txt"):
+    for text_file in (REPO_ROOT / "isaac_core_out").rglob("*.txt"):
         if text_file.is_file():
             text_file.unlink()
 
