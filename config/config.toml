@@ -30,7 +30,7 @@ output_root = "./isaac_core_out"
 [assets]
 search_paths = ["./usd", "./usd/assets"]
 layer_search_paths = []
-# hdri = "sunflowers_puresky_4k.exr"
+hdri = "sunflowers_puresky_4k.exr"
 
 
 [geo]
@@ -38,7 +38,7 @@ enu_reference = { lat_deg = 32.22481, lon_deg = 35.25621, alt_m = 516.7 }
 
 
 [cesium]
-delete_cache_on_launch = false         # true: re-stream terrain every run, avoiding a stalled startup
+delete_cache_on_launch = false
 
 
 [features]
@@ -70,7 +70,7 @@ domain_id = 13
 
 [logging]
 level = "warning"
-isaac_logs = true
+isaac_logs = false
 quiet_loggers = [
     "ogn_registration",
     "AutoNode",

@@ -530,6 +530,7 @@ def Xform "World"
     }
 
     def "bike_1" (
+        instanceable = true
         prepend payload = @./assets/bike/scene.usdc@
     )
     {
