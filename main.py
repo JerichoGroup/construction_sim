@@ -53,13 +53,13 @@ def main() -> None:
 
             sleep(4.0)
 
-            camera.stop()
 
             data_dir = REPO_ROOT / "isaac_core_out" / f"pov{i}"
             data_dir.mkdir(parents=True, exist_ok=True)
 
-            print("video:", camera.save_video(str(data_dir / f"vis_.mp4")))
-            print("segmented video:", session.stop_segmentation_recording(str(data_dir / f"seg_.mp4")))
+            session.stop_segmentation_recording(str(data_dir / f"seg_.mp4"))
+            camera.stop()
+            camera.save_video(str(data_dir / f"vis_.mp4"))
 
             sleep(0.2)
 
