@@ -35,13 +35,14 @@ def main() -> None:
     with Sim.launch() as session:
         print("capabilities:", session.get_capabilities())
 
-        for i in range(len(MOVEMENTS)):
-            bot = PoseBot(start=Lla(lat_deg=32.224800, lon_deg=35.256100, alt_m=519.00))
-            bot.turn_to_point(*CENTER_POINT, duration_s=0.1)
+        for i, (right_left, up_down) in enumerate(MOVEMENTS):
+            with PoseBot(start=Lla(lat_deg=32.224800, lon_deg=35.256100, alt_m=519.00)) as bot:
+                bot.turn_to_point(*CENTER_POINT, duration_s=0.1)
 
-            bot.move_right_left(MOVEMENTS[i][0], duration_s=0.1)
-            bot.move_up_down(MOVEMENTS[i][1], duration_s=0.1)
-            bot.turn_to_point(*CENTER_POINT, duration_s=0.1)
+                bot.move_right_left(right_left, duration_s=0.1)
+                bot.move_up_down(up_down, duration_s=0.1)
+
+                bot.turn_to_point(*CENTER_POINT, duration_s=0.1)
 
             camera = video_recorder()
             camera.start()
@@ -55,6 +56,8 @@ def main() -> None:
 
             print("video:", camera.save_video(str(REPO_ROOT / "isaac_core_out" / f"POV{i}_vis.mp4")))
             print("segmented video:", session.stop_segmentation_recording(str(REPO_ROOT / "isaac_core_out" / f"POV{i}_segmented.mp4")))
+
+            sleep(0.2)
 
             camera.shutdown()
 
